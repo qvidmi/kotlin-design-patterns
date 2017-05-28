@@ -3,7 +3,7 @@
      display it as such, e.g. website) -->
 
 # Design patterns implemented in Kotlin
-
+[![Build status](https://travis-ci.org/qvidmi/kotlin-design-patterns.svg?branch=master)](https://travis-ci.org/qvidmi/kotlin-design-patterns)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/qvidmi/kotlin-design-patterns/master/LICENSE.md)
 
 # Introduction
