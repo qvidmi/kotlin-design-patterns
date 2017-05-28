@@ -33,7 +33,6 @@ patterns by any of the following approaches
 
  - Using difficulty tags, `Difficulty-Beginner`, `Difficulty-Intermediate` & `Difficulty-Expert`.
  - Using pattern categories, `Creational`, `Behavioral` and others.
- - Search for a specific pattern. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
 
 # Disclaimer
 
