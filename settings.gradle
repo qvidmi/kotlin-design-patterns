@@ -1,2 +1,3 @@
 include "adapter"
 include "factory-method"
+include "observer"
