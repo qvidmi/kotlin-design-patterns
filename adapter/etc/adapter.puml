@@ -1,0 +1,26 @@
+@startuml
+package com.qvidmi.adapter {
+  class BattleFishingBoat {
+    - boat : FishingBoat
+    --
+    + BattleFishingBoat(boat: FishingBoat)
+  }
+  interface BattleShip {
+    + fire() {abstract}
+    + move() {abstract}
+  }
+  class Captain {
+    - battleship : BattleShip
+    --
+    + Captain(battleship : BattleShip)
+  }
+  class FishingBoat {
+    + fish()
+    + sail()
+  }
+}
+BattleFishingBoat -->  "based on" FishingBoat
+Captain -->  "has" BattleShip
+Captain ..|> BattleShip
+BattleFishingBoat ..|> BattleShip
+@enduml
