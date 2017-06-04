@@ -16,7 +16,7 @@ Define an interface for creating an object, but let subclasses
 decide which class to instantiate. Factory Method lets a class defer
 instantiation to subclasses.
 
-![alt text](./etc/factory-method_1.png "Factory Method")
+![alt text](./etc/factory-method.png "Factory Method")
 
 ## Applicability
 Use the Factory Method pattern when

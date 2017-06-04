@@ -1,0 +1,49 @@
+@startuml
+package com.qvidmi.factory.method {
+    together {
+        interface Blacksmith {
+        + manufactureWeapon(WeaponType) : Weapon {abstract}
+        }
+        class ElfBlacksmith {
+
+        }
+        class OrcBlacksmith {
+
+        }
+    }
+    together {
+        class ElfWeapon {
+            - weaponType : WeaponType
+            --
+            + ElfWeapon(weaponType : WeaponType)
+        }
+
+        class OrcWeapon {
+            - weaponType : WeaponType
+            --
+            + OrcWeapon(weaponType : WeaponType)
+        }
+        interface Weapon {
+            + getWeaponType() : WeaponType {abstract}
+        }
+        enum WeaponType {
+            + SHORT_SWORD {static}
+            + SPEAR {static}
+            + AXE {static}
+            + UNDEFINED {static}
+            --
+            + WeaponType(title : String)
+            --
+            - title : String
+        }
+    }
+}
+
+ElfWeapon -->  WeaponType
+OrcWeapon -->  WeaponType
+ElfBlacksmith ..|> Blacksmith
+ElfWeapon ..|> Weapon 
+OrcBlacksmith ..|> Blacksmith 
+OrcWeapon ..|> Weapon
+Weapon -[hidden]- WeaponType
+@enduml
