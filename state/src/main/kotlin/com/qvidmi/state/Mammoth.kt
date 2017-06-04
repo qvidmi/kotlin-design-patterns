@@ -20,15 +20,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.qvidmi.observer
+package com.qvidmi.state
 
-fun main(args: Array<String>) {
-    val weather = Weather(WeatherType.SUNNY)
-    weather.addObserver(Orcs())
-    weather.addObserver(Hobbits())
+class Mammoth {
+    var state: State
+    init {
+        this.state = PeacefulState(this)
+    }
 
-    weather.timePasses()
-    weather.timePasses()
-    weather.timePasses()
-    weather.timePasses()
+    /**
+     * Makes time pass for the mammoth
+     */
+    fun timePasses() {
+        if (state is PeacefulState) {
+            changeStateTo(AngryState(this))
+        } else {
+            changeStateTo(PeacefulState(this))
+        }
+    }
+
+    private fun changeStateTo(newState: State) {
+        this.state = newState
+        this.state.onEnterState()
+    }
+
+    override fun toString(): String {
+        return "The mammoth"
+    }
+
+    fun observe() {
+        this.state.observe()
+    }
 }

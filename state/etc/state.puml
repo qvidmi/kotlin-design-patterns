@@ -1,0 +1,27 @@
+@startuml
+package com.qvidmi.state {
+  class AngryState {
+    - mammoth : Mammoth
+    + AngryState(mammoth : Mammoth)
+  }
+  class Mammoth {
+    - state : State
+    - changeStateTo(newState : State)
+    + observe()
+    + timePasses()
+  }
+  class PeacefulState {
+    - mammoth : Mammoth
+    + PeacefulState(mammoth : Mammoth)
+  }
+  interface State {
+    + observe() {abstract}
+    + onEnterState() {abstract}
+  }
+}
+PeacefulState -->  "mammoth" Mammoth
+AngryState -->  "mammoth" Mammoth
+Mammoth -->  "state" State
+AngryState ..|> State 
+PeacefulState ..|> State 
+@enduml

@@ -20,15 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.qvidmi.observer
+package com.qvidmi.state
 
-fun main(args: Array<String>) {
-    val weather = Weather(WeatherType.SUNNY)
-    weather.addObserver(Orcs())
-    weather.addObserver(Hobbits())
+import mu.KotlinLogging
 
-    weather.timePasses()
-    weather.timePasses()
-    weather.timePasses()
-    weather.timePasses()
+class PeacefulState (val mammoth: Mammoth) : State {
+    private val logger = KotlinLogging.logger {}
+    override fun onEnterState() {
+        logger.info("{} calms down.", mammoth)
+    }
+
+    override fun observe() {
+        logger.info("{} is calm and peaceful.", mammoth)
+    }
 }

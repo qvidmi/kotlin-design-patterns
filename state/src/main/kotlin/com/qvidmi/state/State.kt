@@ -20,15 +20,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.qvidmi.observer
+package com.qvidmi.state
 
-fun main(args: Array<String>) {
-    val weather = Weather(WeatherType.SUNNY)
-    weather.addObserver(Orcs())
-    weather.addObserver(Hobbits())
-
-    weather.timePasses()
-    weather.timePasses()
-    weather.timePasses()
-    weather.timePasses()
+interface State {
+    fun onEnterState()
+    fun observe()
 }

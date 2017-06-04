@@ -20,15 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.qvidmi.observer
 
-fun main(args: Array<String>) {
-    val weather = Weather(WeatherType.SUNNY)
-    weather.addObserver(Orcs())
-    weather.addObserver(Hobbits())
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.AppenderBase
+import org.slf4j.LoggerFactory
+import java.util.*
 
-    weather.timePasses()
-    weather.timePasses()
-    weather.timePasses()
-    weather.timePasses()
+class InMemoryAppender : AppenderBase<ILoggingEvent> {
+    private val log = LinkedList<ILoggingEvent>()
+
+    constructor() {
+        (LoggerFactory.getLogger("root") as Logger).addAppender(this)
+        start()
+    }
+
+    override fun append(eventObject: ILoggingEvent) {
+        log.add(eventObject)
+    }
+
+    val logSize: Int
+        get() = log.size
+
+    val lastMessage: String
+        get() = log[log.size - 1].formattedMessage
 }
