@@ -1,0 +1,51 @@
+@startuml
+left to right direction
+package com.qvidmi.observer {
+together {
+    interface Observer<SUBJECT : Observable<SUBJECT, OBSERVER, ARGUMENT>, OBSERVER : Observer<SUBJECT, OBSERVER, ARGUMENT>, ARGUMENT> {
+        + update(SUBJECT, ARGUMENT)
+    }
+    interface Race<Weather, Race, WeatherType> {
+
+    }
+    class Hobbits {
+        + update(weather: Weather, currentWeather : WeatherType)
+    }
+    class Orcs {
+        + update(weather: Weather, currentWeather : WeatherType)
+    }
+  }
+
+together {
+    class Weather<Weather, Race, WeatherType> {
+        - currentWeather : WeatherType
+        --
+        + changes(watherType: WeatherType)
+        + timePasses()
+    }
+    class Observable<SUBJECT : Observable<SUBJECT, OBSERVER, ARGUMENT>, OBSERVER : Observer<SUBJECT, OBSERVER, ARGUMENT>, ARGUMENT> {
+        - observers : List<WeatherObserver>
+        --
+        + addObserver(obs : WeatherObserver)
+        - notifyObservers()
+        + removeObserver(obs : WeatherObserver)
+    }
+    }
+    enum WeatherType {
+        + COLD {static}
+        + RAINY {static}
+        + SUNNY {static}
+        + WINDY {static}
+    }
+}
+Weather -->  "-currentWeather" WeatherType
+Weather --|>  Observable
+Hobbits ..|> Race
+Hobbits -[hidden]- Race
+Orcs -[hidden]- Race
+Race -[hidden]- Observer
+Orcs ..|> Race
+Race --|> Observer
+Orcs -[hidden]--> Observable
+Weather -[hidden]- WeatherType
+@enduml
